@@ -51,7 +51,7 @@ export function EmbedHost({
 
       const result = await formClient.post<SubmitResponse>(
         `/public/forms/${formSlug}/submit`,
-        { body, cache: "no-store" } as RequestInit & { body: unknown },
+        { body, cache: "no-store" },
       )
 
       safePostToParent({
