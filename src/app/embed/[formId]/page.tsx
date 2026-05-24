@@ -21,6 +21,7 @@ import { formClient } from '@/lib/form-client'
 import { EmbedHost } from '@/components/embed-host'
 import { EmbedHeightSync } from '@/components/embed-height-sync'
 import { FormWithPayment } from '@/components/form-with-payment'
+import { FunnelInit } from '@/components/funnel-init'
 import type { FormSpec } from 'form-renderer'
 
 interface FormResponse {
@@ -59,6 +60,7 @@ export default async function EmbedFormPage({ params, searchParams }: PageProps)
   return (
     <main
       data-embed-root="true"
+      data-form-root
       style={{
         // Compact embed chrome: no margins so the iframe's own height matches
         // the form content perfectly. The parent controls the surrounding UX.
@@ -67,6 +69,7 @@ export default async function EmbedFormPage({ params, searchParams }: PageProps)
       }}
     >
       <EmbedHeightSync />
+      <FunnelInit slug={form.slug} />
       <FormWithPayment>
         <EmbedHost
           spec={form.spec_json}

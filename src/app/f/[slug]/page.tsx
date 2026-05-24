@@ -15,6 +15,7 @@ import { SESSION_COOKIE } from '@/lib/session'
 import { safeReturnTo } from '@/lib/safe-return-to'
 import { PublicFormShell } from '@/components/public-form-shell'
 import { FormWithPayment } from '@/components/form-with-payment'
+import { FunnelInit } from '@/components/funnel-init'
 import type { FormSpec } from 'form-renderer'
 
 interface FormResponse {
@@ -90,7 +91,8 @@ export default async function FormBySlugPage({ params, searchParams }: PageProps
   }
 
   return (
-    <main>
+    <main data-form-root>
+      <FunnelInit slug={form.slug} />
       <FormWithPayment>
         <PublicFormShell
           spec={form.spec_json}
