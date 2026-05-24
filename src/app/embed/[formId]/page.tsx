@@ -20,6 +20,7 @@ import { notFound } from 'next/navigation'
 import { formClient } from '@/lib/form-client'
 import { EmbedHost } from '@/components/embed-host'
 import { EmbedHeightSync } from '@/components/embed-height-sync'
+import { FormWithPayment } from '@/components/form-with-payment'
 import type { FormSpec } from 'form-renderer'
 
 interface FormResponse {
@@ -66,13 +67,15 @@ export default async function EmbedFormPage({ params, searchParams }: PageProps)
       }}
     >
       <EmbedHeightSync />
-      <EmbedHost
-        spec={form.spec_json}
-        formSlug={form.slug}
-        formId={form.id}
-        eventKey={event_key}
-        returnUrl={return_url}
-      />
+      <FormWithPayment>
+        <EmbedHost
+          spec={form.spec_json}
+          formSlug={form.slug}
+          formId={form.id}
+          eventKey={event_key}
+          returnUrl={return_url}
+        />
+      </FormWithPayment>
     </main>
   )
 }

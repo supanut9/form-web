@@ -14,6 +14,7 @@ import { formClient } from '@/lib/form-client'
 import { SESSION_COOKIE } from '@/lib/session'
 import { safeReturnTo } from '@/lib/safe-return-to'
 import { PublicFormShell } from '@/components/public-form-shell'
+import { FormWithPayment } from '@/components/form-with-payment'
 import type { FormSpec } from 'form-renderer'
 
 interface FormResponse {
@@ -90,14 +91,16 @@ export default async function FormBySlugPage({ params, searchParams }: PageProps
 
   return (
     <main>
-      <PublicFormShell
-        spec={form.spec_json}
-        formSlug={form.slug}
-        formId={form.id}
-        returnUrl={validatedReturnUrl}
-        eventKey={event_key}
-        prefill={prefill}
-      />
+      <FormWithPayment>
+        <PublicFormShell
+          spec={form.spec_json}
+          formSlug={form.slug}
+          formId={form.id}
+          returnUrl={validatedReturnUrl}
+          eventKey={event_key}
+          prefill={prefill}
+        />
+      </FormWithPayment>
     </main>
   )
 }
